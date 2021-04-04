@@ -1,0 +1,879 @@
+//------LOGO---------
+.logo{
+    // display: inline-block;
+    // width: 2.5em;
+    height: 2.5em;
+    // border-radius: 50%;
+    margin-left: 2em;
+    // background-color: indigo;
+
+    // MEDIA QUERY
+    @include respond(tab-port) {
+        margin-left: 1em;
+    }
+}
+/////////////////////
+
+// ------SEARCH------
+.search{
+    // I can use it because it's a flex element
+    flex: 0 0 40%;
+
+    display: flex;
+    justify-content: center;
+
+    margin-left: 5em;
+    position: relative;
+
+    // MEDIA QUERY --- change elements' order and make header a flex-wrap element
+    @include respond(tab-port) {
+        margin-left: 0;
+        flex: 1; // here it must be flex(-grow): 1 because it grows as much as it can 
+    }
+    @include respond(phone) {
+        order: 1;
+        // allow it to occupy all the available spcae after make the header flex-wrap
+        flex: 0 0 100%;
+        // margin-left: 1.5em;
+    }
+
+    &__input{
+        background-color: var(--color-grey-light-2);
+
+        font-family: inherit;
+        color: inherit;
+        width: 90%;
+
+        border: none;
+        border-radius: 100px;
+        box-shadow: -0.05em 0.3em 1.5em rgba(0,0,0,.05);
+        padding: .5em 1.2em;
+        transition: transform .3s;
+
+        &:focus{
+            // width: 90%; ---> if you want to use it, decrease the value of width in &__input and display .search main element as flex 
+            transform: scale(1.05);
+            outline: none;
+            background-color: var(--color-grey-light-3);
+            box-shadow: none;
+            box-shadow: -0.05em 0.3em 1.5em rgba(0,0,0,.08);
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+        }
+    }
+
+    &__icon{
+        height: 1.5em;
+        width: 1.5em;
+        fill: currentColor;
+    }
+
+    &__list{
+        display: none;  
+    }
+
+    // show up the list when input is focused
+    &__input:focus + &__list{
+        display: inline-block;  // ul is a block element and to change the width as we like we need to display it as an inline-block
+        width: 90%;
+        position: absolute;
+        top: 2.5em; //39px ---> 2.41em
+        // left: 0; ---> why it works? without left the list is attached to the input
+        z-index: 2;
+
+        padding: 1.5em 0 1em;
+        background-color: var(--color-grey-light-3);
+        border-bottom-left-radius: 1.25em;
+        border-bottom-right-radius: 1.25em;
+        box-shadow: -0.05em 0.3em 1.5em rgba(0,0,0,.08);
+        // animation show
+        animation: show .25s ease-in both;
+    }
+
+    &__item{
+        display: flex;
+        align-items: center;
+        color: var(--color-grey-dark-3);
+        // put color here in place of &__text because &__icon has currentColor and they take the current color of the main parent, which is search__item
+        margin-left: 1em;
+
+        &:not(:last-child){
+            margin-bottom: 1em;
+        }
+    }
+
+    &__text{
+        margin-left: 1em;
+        font-size: .8em;
+    }
+}
+
+// animation for list once it shows up
+@keyframes show{
+    from{ 
+        opacity: 0;
+        transform: scale(1);
+    }
+
+    to{
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+/////////////////////
+
+// -----USER-NAV------
+.user-nav{
+    display: flex;
+    // overrides align-items: center in header
+    align-self: stretch;
+
+    // any item
+    & > *{
+        display: flex;
+        align-items: center;
+        padding: 0 1.5em;
+        position: relative;
+    }
+    & > *:hover{
+        background-color: var(--color-grey-light-2);
+    }
+
+    &__box{
+        cursor: pointer;
+    }
+
+    &__icon{
+        height: 1.5em;
+        width: 1.5em;
+        fill: var(--color-grey-dark-2);
+    }
+
+    &__notification{
+        display: inline-block;
+        font-size: .75em;
+        width: 1em;
+        height: 1em;
+        box-sizing: content-box;
+        
+        color: #fff;
+        border-radius: 50%;
+        background-color: var(--primary-dark);
+
+        line-height: 1em;
+        text-align: center;
+        padding: .2em;
+
+        position: absolute;
+        top: 14px;
+        left: 3em;
+
+        // MEDIA QUERY
+        @include respond(phone) {
+            top: 12px;
+        }
+    }
+
+    &__user-photo, &__admin-photo{
+        height: 3em;
+        border-radius: 50%;
+        margin-right: 1em;
+    }
+    &__admin-photo{ 
+        height: 2em;
+        margin-right: .5em;
+    }
+
+    &__user{
+        position: relative;
+    }
+
+    // DROPDOWN MENU
+    &__setting{
+        display: none;
+        background-color: var(--color-grey-dark-1);
+        color: var(--color-grey-dark-2);
+        padding: 1em 0 .25em;
+        border-bottom-left-radius: .5em;
+        opacity: 0;
+    }
+
+    // common style
+    &__user:hover &__setting,
+    &__box:hover &__setting{
+        display: inline-block;
+        position: absolute;
+        z-index: 2;
+        width: 100%;
+        // use ems if you want to change font-size because this way top will scale along with fon-size
+        top: 4.7em; // 72px---> 4.5em but it can be improved to 4.7em
+        left: 0;
+        font-size: .95em;
+
+        // animation
+        animation: show-settings .3s ease-in both;
+
+        // MEDIA QUERY
+        @include respond(phone) {
+            z-index: 5;
+            top: 4.3em;
+        }
+    }
+    // only user-nav__box
+    &__box:hover &__setting{
+        width: 15em;
+        border-bottom-right-radius: .5em;
+    }
+
+    &__setting-icon{
+        height: 1.25em;
+        width: 1.25em;
+        fill: currentColor;
+    }
+
+    &__item{
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        padding: 0 .8em .5em;
+
+        &:hover{
+            color: var(--primary-light);
+        }
+
+        &:not(:last-child){
+            margin-bottom: 1em;
+            border-bottom: 1px solid var(--color-grey-dark-2);
+        }
+    }
+
+    &__text{
+        margin-left: 1em;
+    }
+}
+
+// animation for user's settings
+@keyframes show-settings{
+    from{ opacity: 0;}
+    to{ opacity: 1;}
+}
+///////////////////////
+
+// ------SIDE-NAV-----
+.side-nav{
+    margin-top: 3em;
+
+    // MEDIA QUERY
+    @media only screen and (max-width: $medium-screen){
+        // sice side-bar is displayed as flex we can use flex: 1; so it will grow as much as it can
+        // flex: 1; //--> applyed to the element
+
+        // now we can put each item side by side with display as flex
+        display: flex; //--> applyed to the container
+        margin-top: 1.5em;
+    }
+
+    // little animaiton using ::before
+    &__item::before{
+        content: '';
+        display: inline-block;
+        background-color: var(--primary-light);
+
+        height: 0;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+
+        transform: scaleX(.04);
+        transform-origin: left;
+        transition: height .35s ease-in, transform .2s .5s cubic-bezier(.73,.01,.3,.56);
+        
+        // MEDIA QUERY -- change left
+        @media only screen and (max-width: $medium-screen){
+            left: 20%;
+        }
+        // MEDIA QUERY -- remove left 20%
+        @media only screen and (max-width: $smaller-screen){
+            left: 0;
+        }
+    }
+
+    // align elements inside items
+    &__item{
+        // display: flex;
+        // align-items: center; // this should go on &__link, not here
+
+        margin-left: 2em;
+        margin-bottom: 1.5em;
+        padding-bottom: .5em;
+
+        position: relative;
+
+        // MEDIA QUERY --- make them occupy all the available space
+        // since side-nav is a flex container we can use flex set to 1 to let them grow and occupy all the available space
+        @media only screen and (max-width: $medium-screen){
+            flex: 1;
+            margin-bottom: 0;
+            padding-bottom: 1.5em; //equal to margin-top:1.5em;
+            margin-left: 0;
+        }
+    }
+
+    // when &__item is hovered change ::before settings
+    &__item:hover::before{
+        height: 4px;
+        transform: scaleX(.6);
+
+        // MEDIA QUERY -- chenge blue bar's width and remove left 20%
+        @media only screen and (max-width: $smaller-screen){
+            transform: scaleX(1);
+        }
+    }
+
+    &__icon{
+        height: 1.5em;
+        width: 1.5em;
+        fill: currentColor;
+    }
+
+    &__text{
+        margin-left: 1em;
+    }
+
+    &__link:link, &__link:visited{
+        display: flex;
+        align-items: center;
+        color: currentColor;
+
+        // MEDIA QUERY
+        @media only screen and (max-width: $medium-screen){
+            justify-content: center;
+        }
+    }
+
+    &__link:hover, &__link:active{
+        color: var(--primary);
+    }
+}
+//////////////////////
+
+// -------LEGAL-------
+.legal{
+    display: flex;
+    justify-content: center;
+    font-size: .8em;
+    margin-bottom: 2em;
+
+    &__item{
+        &:not(:last-child){
+            margin-right: 1em;
+        }
+    }
+
+    &__link{color: currentColor;}
+
+    // MEDIA QUERY
+    @media only screen and (max-width: $medium-screen){
+        display: none;
+    }
+}
+//////////////////////
+
+// -------OVERVIEW-------
+.overview{
+    display: flex;
+    align-items: center;
+
+    // MEDIA QUERY --- stack each element one on top of another
+    @media only screen and (max-width: $smaller-screen){
+        flex-direction: column;
+        // now we need to change the other elements
+    }
+
+    &__heading{
+        font-size: 1.5em;
+        font-weight: 300;
+        margin-left: 1em;
+        padding: .8em 0;
+
+        display: inline-block;
+        background-image: var(--gradient);
+        background-clip: text;
+        color: transparent;
+    }
+
+    &__location{
+        margin-left: auto;
+
+        display: flex;
+        align-items: center;
+        transition: color .2s;
+
+        &:hover{ color: var(--primary-light);}
+
+        // MEDIA QUERY
+        @media only screen and (max-width: $smaller-screen){
+            margin-left: 0;
+            margin-bottom: 1em;
+        }
+    }
+
+    &__icon-location{
+        width: 1.5em;
+        height: 1.5em;
+        fill: currentColor;
+    }
+
+    &__text{
+        margin-left: .5em;
+    }
+
+    &__rating-box{
+        color: #fff;
+        background-image: var(--gradient);
+        margin-left: 2em;
+        text-align: center;
+        padding: 0 .5em;
+
+        align-self: stretch;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        // MEDIA QUERY
+        @media only screen and (max-width: $smaller-screen){
+            margin-left: 0;
+        }
+    }
+
+    &__rating{
+        font-size: 1.5em;
+        font-weight: 300;
+    }
+
+    &__votes{
+        font-size: .8em;
+    }
+}
+//////////////////////
+
+// ------GALLERY---------
+.gallery{
+    display: flex;
+
+    // we want the bg right on top of the image, so we need ::after
+    &__image-box::after{
+        content: '';
+        width: 100%;
+        height: 100%;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        background-image: var(--gradient);
+        opacity: .7;
+        transform: rotate(25deg) scale(2) translateX(-18em);
+        transition: transform 1s;
+    }
+
+    // parent element
+    &__image-box{
+        overflow: hidden;
+        position: relative;
+    }
+
+    // they have to occupy the entire width of gallery!
+    &__image{
+        width: 100%;
+        display: block;
+
+        transform: scale(1.15);
+        transition: transform .8s;
+    }
+
+    &__caption{
+        color: #fff;
+        font-size: 1.3em;
+        font-weight: 300;
+    
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+
+        width: 100%;
+        height: 100%;
+
+        text-align: center;
+        padding: 0 2em;
+        opacity: 0;
+        transform: translateY(100%);
+        transition: opacity .5s, transform .8s;
+
+        // MEDIA QUERY --- change font-size
+        @include respond(tab-port){
+            font-size: 1.15em;
+        }
+    }
+
+    // HOVER EFFECTS
+    &__image-box:hover &__image{
+        transform: scale(1);
+    }
+    &__image-box:hover::after{
+        transform: rotate(25deg) scale(2) translateX(0);
+    }
+    &__image-box:hover &__caption{
+        opacity: 1;
+        transform: translateY(70%);
+    }
+}
+/////////////////////////
+
+//------PET-INFO--------
+.pet-information{
+    display: flex;
+    align-items: center;
+    // margin-bottom: 3em;
+
+    
+    &__shape{
+        position: relative;
+        clip-path: circle(50% at 50% 50%);
+    }
+    
+    &__photo{
+        height: 8em;
+        width: auto;
+        transform: scale(1.4);
+        transition: all .5s;
+    }
+
+    &__shape:hover &__photo{
+        filter: blur(4px) brightness(85%);
+        transform: scale(1.1);
+    }
+    &__shape:hover &__name {
+        transform: translate(-50%, -40%);
+        opacity: 1;
+    }
+
+    &__name{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 250%);
+        
+        font-size: 1.2em;
+        letter-spacing: 2px;
+        color: #fff;
+        opacity: 0;
+        transition: transform .5s, opacity .6s;
+    }
+
+    &__description{
+        margin-left: 1em;
+    }
+}
+////////////////////////
+
+//-------BENEFIT------
+.benefit{
+    margin: 3em 0;
+    padding: 2em 0;
+    border-bottom: 1px solid var(--color-grey-light-3);
+    border-top: 1px solid var(--color-grey-light-3);
+
+    display: flex;
+    flex-wrap: wrap;
+
+    // we can use icons in ::before
+    &__item::before{
+        content: '';
+        // svg is an inline element so make sure to display it as an inline-block, otherwise width won't work
+        height: 1em;
+        width: 1em;
+        display: inline-block;
+        margin-right: .5em;
+
+        background-image: url('/img/SVG/chevron-thin-right.svg');
+        background-size: cover;
+
+        // if the browser supports mask-image then use the propreties in {}
+        @supports(mask-image: url('image')) or (webkit-mask-image: url('image')){
+            mask-image: url('/img/SVG/chevron-thin-right.svg');
+            mask-size: cover;
+            background-image: var(--gradient);
+        }
+    }
+    // &__item is now a flex element, so we can apply 'flex'. We want each element to occupy only 50% of the available space. I used width: 50%; only because I hadn't set .benefit displayed as flex
+    &__item{
+        flex: 0 0 50%;
+        margin-bottom: .8em;
+    }
+}
+//////////////////////
+
+// ------RECOMMEND------
+.recommend{
+    display: flex;
+    align-items: center;
+
+    &__text{
+        font-size: .9em;
+        color: var(--color-grey-dark-2);
+        margin-right: auto;
+    }
+    &__friends{
+        display: flex;
+        align-items: center;
+    }
+    &__photo{
+        height: 3.25em;
+        border-radius: 100%;
+        border: 3px solid #fff;
+        
+        &:not(:last-child){
+            margin-right: -1.2em;
+        }
+    }
+}
+///////////////////////
+
+//-----OWNER-REVIEWS----
+.owner-reviews{
+    flex: 1;
+    // don't do this ---> flex: 1 0 auto ---> it overflows
+
+    // ----for elements in this container---
+    // to position the button in this container we could wrap it up in a div and center the element inside, or use position relative and absolute. We can even use flex
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // -------------------------------------
+
+
+    &__heading{
+        // it works because we set .owner-reviews displayed as flex
+        align-self: flex-start;
+
+        margin-bottom: 1em;
+        font-style: italic;
+        text-transform: uppercase;
+
+        display: inline-block;
+        background-image: var(--gradient);
+        background-clip: text;
+        color: transparent;
+
+        // MEDIA QUERY
+        @include respond(phone){
+            align-self: center;
+        }
+    }
+
+    &__review{
+        background-color: #fff;
+        padding: 1.25em;
+        margin-bottom: 2.25em;
+
+        box-shadow: var(--shadow);
+        border-radius: .35em;
+        transition: transform .3s;
+
+        &:hover{
+            transform: scale(1.025) translateY(-5px);
+        }
+    }
+
+    &__quote{
+        margin-bottom: 1em;
+    }
+
+    &__comment-info{
+        display: flex;
+        align-items: center;
+    }
+
+    &__photo{
+        height: 3.25em;
+        width: auto;
+
+        border: 1px solid var(--primary);
+        margin-right: 1.5em;
+
+        border-radius: 50%;
+        box-sizing: content-box;
+        padding: .2em;
+    }
+
+    &__owner-box{
+        display: flex;
+        flex-direction: column;
+
+        margin-right: auto;
+    }
+
+    &__name{
+        text-transform: capitalize;
+    }
+
+    &__date{
+        color: var(--color-grey-dark-2);
+        text-transform: uppercase;
+        font-size: .8em;
+    }
+
+    &__rating{
+        font-size: 1.8em;
+        font-weight: 300;
+
+        background-image: var(--gradient);
+        background-clip: text;
+        color: transparent;
+    }
+}
+////////////////////////
+
+// ---CALL-TO-ACTION---
+.cta{
+    // to center all the elements in this div we can either use flexbox or text align
+
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
+    text-align: center;
+
+    padding: 3em 1.5em;
+    background-color: #fff;
+    border-bottom: var(--line);
+
+    &__heading{
+        font-size: 1.8em;
+        font-weight: 300;
+        color: var(--color-grey-dark-2);
+        margin-bottom: 1.5em;
+        text-transform: uppercase;
+    }
+}
+///////////////////////
+
+// -----BUTTONS-----
+.btn-inline{
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    // if we use font-size set to inherit, this will inherit the global font-size of the section where it is
+    font-size: inherit;
+
+    background-image: var(--gradient);
+    background-clip: text;
+    color: transparent;
+
+    border-bottom: 1px solid var(--primary-dark);
+    padding-bottom: .25em;
+
+    transition: all .3s ease-out;
+
+    &:hover{
+        transform: rotate(4deg) scale(1.1);
+        border-bottom: 1px solid var(--primary);
+        letter-spacing: 2px;
+        color: var(--primary-dark);
+        box-shadow: 0 .5em 1.5em rgba(0,0,0,.2);
+    }
+}
+
+.btn{
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    font-size: inherit;
+
+    background-image: var(--gradient);
+    color: #fff;
+    padding: 1.1em 4em;
+    border-radius: 100px;
+    box-shadow: 0 .5em 1em rgba(0,0,0,.15);
+
+    overflow: hidden;
+    position: relative;
+    transition: transform .2s;
+
+    &--visible{
+        display: inline-block;
+        transform: translateX(0);
+        transition: transform .3s .3s ease;
+    }
+
+    &--hidden{      
+        position: absolute;
+        top: 0;
+        right: 100%;
+        height: 100%;
+        width: 100%;
+        padding: 1.1em 0;
+        opacity: 0;
+
+        transition: right .4s .3s ease, opacity .4s;
+    }
+
+    &:hover{
+        transform: translateY(-3px);
+        box-shadow: 0 1em 2em rgba(0,0,0,.3);
+    }
+    &:hover &--visible{ transform: translateX(200%); }
+    &:hover &--hidden{ 
+        right: 0; 
+        opacity: 1;
+    }
+
+    &:active {
+        transform: translateY(1px);
+        box-shadow: 0 .5em 1em rgba(0,0,0,.25);
+    }
+}
+////////////////////
+
+// ----FOOTER (components)----
+.copyright{
+    font-size: .8em;
+}
+
+.social{
+    display: flex;
+    align-items: center;
+
+    &__item{
+        &:not(:last-child){
+            margin-right: 1.5em;
+        }
+
+        transition: transform .2s;
+        &:hover{ transform: scale(1.2) rotate(-5deg);}
+    }
+
+    &__link:link, &__link:visited{
+        color: var(--color-grey-dark-2);
+    }
+
+    &__icon{
+        height: 1.8em;
+        width: 1.8em;
+        fill: currentColor;
+        transition: fill .3s;
+
+        &--twitter{
+            &:hover{ fill: #00acee; }
+        }
+        &--facebook{
+            &:hover{ fill: #3b5998; }
+        }
+    }
+}
+/////////////////////////////

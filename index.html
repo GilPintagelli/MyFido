@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap" rel="stylesheet">
+    <!-- <link rel="shortcut icon" href="favicon.ico" type=""> -->
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="/css/main.css">
+
+    <title>MyFido &mdash; User navigation</title>
+</head>
+
+<body>
+
+    <!-- this container will be right in the middle of the page -->
+    <div class="container">
+        
+        <!-- header contains three elements -->
+        <header class="header">
+
+            <!-- DENSITY SWITCHING -->
+            <picture>
+                <source
+                    srcset="../img/logo-small--1x.png 1x, ../img/logo-small--2x.png 2x"
+                    media="(max-width: 28em)"
+                >
+
+                <!-- ART DIRECTION -->
+                <img
+                    srcset="../img/logo-large--1x.png 1x, ../img/logo-large--2x.png 2x"
+                    src="../img/logo-large--2x.png"
+                    alt="logo-myfido"
+                    class="logo"
+                >
+            </picture>
+
+            <form action="#" class="search">
+                <input type="text" placeholder="Search" class="search__input">
+
+                <ul class="search__list">
+                    <li class="search__item">
+                        <svg class="search__icon">
+                            <use xlink:href="/img/sprite.svg#icon-address"></use>
+                        </svg>
+                        <span class="search__text">where is it?</span>
+                    </li>
+
+                    <li class="search__item">
+                        <svg class="search__icon">
+                            <use xlink:href="/img/sprite.svg#icon-fastfood"></use>
+                        </svg>
+                        <span class="search__text">what can I eat?</span>
+                    </li>
+                </ul>
+
+            </form>
+
+            <nav class="user-nav">
+
+                <div class="user-nav__box">
+                    <svg class="user-nav__icon">
+                        <use xlink:href="/img/sprite.svg#icon-bookmark"></use>
+                    </svg>
+                </div>
+
+                <div class="user-nav__box">
+                    <svg class="user-nav__icon">
+                        <use xlink:href="/img/sprite.svg#icon-chat"></use>
+                    </svg>
+                    <span class="user-nav__notification">2</span>
+
+                    <!-- DROPDOWN MENU -->
+                    <ul class="user-nav__setting">
+                        <li class="user-nav__item">
+                            <svg class="user-nav__setting-icon">
+                                <use xlink:href="/img/sprite.svg#icon-celebration"></use>
+                            </svg>
+                            <span class="user-nav__text">Welcome to MyFido!</span>
+                        </li>
+                        <li class="user-nav__item">
+                            <img src="/img/user-2.jpg" alt="" class="user-nav__admin-photo">
+                            <span class="user-nav__text">Hi, I'm Nina. Great to have you here!</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="user-nav__box">
+                    <svg class="user-nav__icon">
+                        <use xlink:href="/img/sprite.svg#icon-bell"></use>
+                    </svg>
+                    <span class="user-nav__notification">1</span>
+
+                    <!-- DROPDOWN MENU -->
+                    <ul class="user-nav__setting">
+                        <li class="user-nav__item">
+                            remember, no booking fees!
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="user-nav__user">
+                    <img src="/img/user-1.jpg" alt="user-photo" class="user-nav__user-photo">
+                    <span class="user-nav__user-name">Jun</span>
+
+                    <!-- DROPDOWN MENU -->
+                    <ul class="user-nav__setting">
+                        <li class="user-nav__item">
+                            <svg class="user-nav__setting-icon">
+                                <use xlink:href="/img/sprite.svg#icon-calendar1"></use>
+                            </svg>
+                            <span class="user-nav__text">Events</span>
+                        </li>
+                        <li class="user-nav__item">
+                            <svg class="user-nav__setting-icon">
+                                <use xlink:href="/img/sprite.svg#icon-baseball"></use>
+                            </svg>
+                            <span class="user-nav__text">Activities</span>
+                        </li>
+                        <li class="user-nav__item">
+                            <svg class="user-nav__setting-icon">
+                                <use xlink:href="/img/sprite.svg#icon-pictures"></use>
+                            </svg>
+                            <span class="user-nav__text">Photos</span>
+                        </li>
+                        <li class="user-nav__item">
+                            <svg class="user-nav__setting-icon">
+                                <use xlink:href="/img/sprite.svg#icon-star"></use>
+                            </svg>
+                            <span class="user-nav__text">Favorites</span>
+                        </li>
+                        <li class="user-nav__item">
+                            <svg class="user-nav__setting-icon">
+                                <use xlink:href="/img/sprite.svg#icon-user"></use>
+                            </svg>
+                            <span class="user-nav__text">Logout</span>
+                        </li>
+
+                    </ul>
+                </div>
+
+            </nav>
+
+        </header>
+
+        <!-- content is anything else but header -->
+        <div class="content">
+                
+            <nav class="side-bar">
+
+                <ul class="side-nav">
+                    <li class="side-nav__item">
+                        <a href="#" class="side-nav__link">
+                            <svg class="side-nav__icon">
+                                <use xlink:href="/img/sprite.svg#icon-home"></use>
+                            </svg>
+                            <span class="side-nav__text">Homepage</span>
+                        </a>
+                    </li>
+                    <li class="side-nav__item">
+                        <a href="#" class="side-nav__link">
+                            <svg class="side-nav__icon">
+                                <use xlink:href="/img/sprite.svg#icon-home"></use>
+                            </svg>
+                            <span class="side-nav__text">Homepage</span>
+                        </a>
+                    </li>
+                    <li class="side-nav__item">
+                        <a href="#" class="side-nav__link">
+                            <svg class="side-nav__icon">
+                                <use xlink:href="/img/sprite.svg#icon-home"></use>
+                            </svg>
+                            <span class="side-nav__text">Homepage</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="legal">
+                    <li class="legal__item">
+                        <a href="#" class="legal__link">Privacy</a>
+                    </li>
+                    <li class="legal__item">
+                        <a href="#" class="legal__link">About us</a>
+                    </li>
+                    <li class="legal__item">
+                        <a href="#" class="legal__link">Policy</a>
+                    </li>
+                </ul>
+                
+            </nav>
+
+
+            <main class="hotel-content">
+                
+                <!-- element n. 1 -->
+                <div class="overview">
+                    <h1 class="overview__heading">MyFido Hotel</h1>
+
+                    <div class="overview__location">
+                        <svg class="overview__icon-location">
+                            <use xlink:href="/img/sprite.svg#icon-location"></use>
+                        </svg>
+
+                        <span class="overview__text">New Orleans, Louisiana</span>
+                    </div>
+
+                    <div class="overview__rating-box">
+                        <div class="overview__rating">7.9</div>
+                        <div class="overview__votes">672 votes</div>
+                    </div>
+                </div>
+
+                <!-- element n. 2 -->
+                <div class="gallery">
+                    <figure class="gallery__image-box">
+
+                        <!-- RESOLUTION SWITCHING -->
+                        <img
+                            srcset="../img/image1--small.jpg 640w, ../img/image1--large.jpg 1280"
+                            sizes="(max-width: 900px) 27w, (max-width: 500px) 24w"
+                            src="/img/image1--large.jpg" 
+                            alt="image-1" 
+                            class="gallery__image"
+                        >
+
+                        <figcaption class="gallery__caption">your best friend</figcaption>
+                    </figure>
+
+                    <figure class="gallery__image-box">
+
+                        <img
+                            srcset="../img/image2--small.jpg 640w, ../img/image2--large.jpg 1280"
+                            sizes="(max-width: 900px) 27w, (max-width: 500px) 24w"
+                            src="/img/image2--large.jpg" 
+                            alt="image-2" 
+                            class="gallery__image"
+                        >
+
+                        <figcaption class="gallery__caption">comfortable room</figcaption>
+                    </figure>
+
+                    <figure class="gallery__image-box">
+
+                        <img
+                            srcset="../img/image3--small.jpg 640w, ../img/image3--large.jpg 1280"
+                            sizes="(max-width: 900px) 27w, (max-width: 500px) 24w"
+                            src="/img/image3--large.jpg" 
+                            alt="image-3" 
+                            class="gallery__image"
+                        >
+
+                        <figcaption class="gallery__caption">Anything you need</figcaption>
+                    </figure>
+                </div>
+
+                <!-- element n. 3 -->
+                <div class="account">
+
+                    <div class="general-info">
+
+                        <div class="pet-information">
+
+                            <figure class="pet-information__shape">
+                                <img src="/img/dog-4.jpg" alt="pet-image" class="pet-information__photo">
+                                <figcaption class="pet-information__name">Aaron</figcaption>
+                            </figure>
+    
+                            <p class="pet-information__description">
+                                He has a small heart-shaped discoloration on the mouth and he's so cute when he barks, even though he looks always angry
+                            </p>
+    
+                        </div>
+
+                        <ul class="benefit">
+                            <li class="benefit__item">Dog owner reviews</li>
+                            <li class="benefit__item">Canine concierge</li>
+                            <li class="benefit__item">No booking fees</li>
+                            <li class="benefit__item">group trip</li>
+                            <li class="benefit__item">big rooms</li>
+                            <li class="benefit__item">good for family</li>
+                            <li class="benefit__item">boutique for dogs</li>
+                            <li class="benefit__item">breakfast included</li>
+                            <li class="benefit__item">pools for dog</li>
+                            <li class="benefit__item">air conditioning</li>
+                        </ul>
+    
+                        <div class="recommend">
+                            <p class="recommend__text">Sam and 3 other friends recommend this hotel</p>
+                            <div class="recommend__friends">
+                                <img src="/img/user-3.jpg" alt="user-3" class="recommend__photo">
+                                <img src="/img/user-4.jpg" alt="user-4" class="recommend__photo">
+                                <img src="/img/user-5.jpg" alt="user-5" class="recommend__photo">
+                                <img src="/img/user-6.jpg" alt="user-6" class="recommend__photo">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="owner-reviews">
+                        <h2 class="owner-reviews__heading">Latest reviews</h2>
+
+                        <figure class="owner-reviews__review">
+                            <blockquote class="owner-reviews__quote">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, laborum.
+                            </blockquote>
+                            <figcaption class="owner-reviews__comment-info">
+                                <img src="/img/user.jpg" alt="user" class="owner-reviews__photo">
+                                <div class="owner-reviews__owner-box">
+                                    <p class="owner-reviews__name">jonas jameson</p>
+                                    <p class="owner-reviews__date">march 7, 2019</p>
+                                </div>
+                                <p class="owner-reviews__rating">7.5</p>
+                            </figcaption>
+                        </figure>
+
+                        <figure class="owner-reviews__review">
+                            <blockquote class="owner-reviews__quote">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, laborum.
+                            </blockquote>
+                            <figcaption class="owner-reviews__comment-info">
+                                <img src="/img/user-2.jpg" alt="user" class="owner-reviews__photo">
+                                <div class="owner-reviews__owner-box">
+                                    <p class="owner-reviews__name">mary jane</p>
+                                    <p class="owner-reviews__date">may 20, 2019</p>
+                                </div>
+                                <p class="owner-reviews__rating">8.0</p>
+                            </figcaption>
+                        </figure>
+
+                        <button class="btn-inline">See more</button>
+                    </div>
+
+                </div>
+
+                <!-- element n. 4 -->
+                <div class="cta">
+                    <h2 class="cta__heading">
+                        we have a special discount for you! don't wait
+                    </h2>
+
+                    <button class="btn">
+                        <span class="btn--hidden">Get the discount</span>
+                        <span class="btn--visible">Check now!</span>
+                    </button>
+                </div>
+
+            </main>
+
+        </div>
+
+        <footer class="footer">
+            <p class="copyright">MyFido &mdash; your loyal app, All Rights Reserved 2019-2021</p>
+
+            <!-- DENSITY SWITCHING -->
+            <picture>
+                <source
+                srcset="../img/logo-large--1x.png 1x, ../img/logo-large--2x.png 2x"
+                media="(max-width: 28em)">
+                <!-- ART DIRECTION -->
+                <img
+                srcset="../img/logo-small--1x.png 1x, ../img/logo-small--2x.png 2x" 
+                src="../img/logo-small--2x.png" 
+                alt="logo image" 
+                class="logo">
+            </picture>
+
+            <ul class="social">
+                <li class="social__item">                    
+                    <a href="#" class="social__link" title="Twitter">
+                        <svg class="social__icon social__icon--twitter">
+                            <use xlink:href="/img/sprite.svg#icon-twitter"></use>
+                        </svg>
+                    </a>
+                </li>
+
+                <li class="social__item">
+                    <a href="#" class="social__link"  title="Facebook">
+                        <svg class="social__icon social__icon--facebook">
+                            <use xlink:href="/img/sprite.svg#icon-facebook"></use>
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </footer>
+
+    </div>
+
+</body>
+</html>
